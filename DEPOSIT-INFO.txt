@@ -1,0 +1,20 @@
+Texas Data Repository software deposit
+
+This folder is a curated copy of the current python-app source package. It
+contains the Python application, automated tests, dependency lists, launch
+scripts, application README, and the GUI icon. It does not contain study
+measurements or an exported dataset; deposit research data separately if
+required by the journal or repository.
+
+Not included: run caches, saved user settings, temporary/diagnostic files,
+virtual environments, the bundled Tcl/Tk runtime, vendor SDK binaries or
+manuals, and optional user audio. Running the application requires a suitable
+Python installation, its listed Python dependencies, working Tcl/Tk support,
+and separately obtained vendor drivers/SDKs for the instruments. Confirm
+vendor redistribution terms before adding any vendor files.
+
+Before making this public, confirm all contributors approve release and choose
+an appropriate software license. The source project did not contain a
+LICENSE or CITATION.cff file, so neither has been invented here. Add the
+license and citation details required by the repository/journal, and record
+the exact release/version used to generate the published results.
