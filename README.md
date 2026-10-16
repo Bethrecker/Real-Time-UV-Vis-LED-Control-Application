@@ -2,33 +2,40 @@
 
 Targets: **QE-PRO QEP06321** through **OceanDirect 1.30.4** and **Mightex BLS-IO04-U/S 04-210326-002** through the supplied x64 USB SDK. This GUI uses real hardware; the simulation selector and simulated probe controls have been removed. Connections and experiments start only when requested.
 
-The complete version 1 snapshot is preserved in **`../python-app-v1`**. Continue editing and launching **`python-app`** for version 2.
+This repository contains the version 2 Python source package. The version 1 snapshot is not included.
 
 The light pink interface groups controls into four tabs on the left: **Experiment** (acquisition and dark/reference setup), **Timing Estimates**, **LED Settings** (irradiation output and timed intensity test), and **Output** (folder, name and export options). The compact controls fit without a scrollbar; the tabs and intensity/absorbance plots start directly below the header controls. Device status and messages appear beneath the graph. Start/Stop share the connection row on the right, with **New Run** directly beneath them. The footer reads **Version 2.1 Created by Elizabeth Recker & Lydia Hall, ZAP Group, UT Austin**.
 
 ## Launch
 
-The Desktop shortcut **Real-Time UV–Vis & LED Control** opens the current project with its pink LED icon and no console window. It points to this project's virtual environment; keep this project folder in place. Opening the GUI does not connect devices or start irradiation.
-
-To recreate the shortcut after moving the project, remove the old Desktop shortcut and run the following from the new workspace folder. The execution-policy override applies only to this installer process:
+This application was developed for 64-bit Windows and tested with **Python 3.14.8 x64**, Matplotlib 3.11.2 and openpyxl 3.1.5. Create a virtual environment and install the listed Python dependencies from this repository root:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\python-app\create-desktop-shortcut.ps1
+py -3.14 -m venv .venv
+& '.\.venv\Scripts\python.exe' -m pip install -r requirements.txt
 ```
 
-From the workspace folder:
+The OceanDirect and Mightex SDKs, device drivers, and connected instruments are required for hardware operation and are not included in this repository. Obtain and install them from the vendors in accordance with their terms. Python must include working Tcl/Tk support; no Tcl/Tk runtime is bundled. Opening the GUI does not connect devices or start irradiation.
+
+Launch from the repository root:
 
 ```powershell
-.\python-app\start-app.ps1
+.\start-app.ps1
 ```
 
-Or use the project interpreter explicitly:
+To create a Desktop shortcut that opens the GUI without a console window, run:
 
 ```powershell
-& '.\python-app\.venv\Scripts\python.exe' -B '.\python-app\gui.py'
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\create-desktop-shortcut.ps1
 ```
 
-The existing virtual environment uses **Python 3.14.8 x64**, Matplotlib 3.11.2 and openpyxl 3.1.5. Plain `py` selects an older installation here. `bootstrap.py` uses matching Tcl/Tk 9.0.4 resources under `runtime/tcl` for this process only. Original files, installed SDKs, drivers and global Python settings are preserved.
+Or launch the GUI directly:
+
+```powershell
+& '.\.venv\Scripts\python.exe' -B '.\gui.py'
+```
+
+The optional preview utility can be started with `.\start-preview.ps1`. The application uses local settings and run-cache folders at runtime; these are not part of the published source package.
 
 ## Setting up the spectrometer
 
